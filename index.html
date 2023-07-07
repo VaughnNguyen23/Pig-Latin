@@ -6,8 +6,14 @@
     <script>
       function translatePigLatin() {
         // Get the input value from the text box
-        const input = document.getElementById("inputBox").value;
+        const input = document.getElementById("inputBox").value.trim();
         
+        // Check if input has only one letter or is empty
+        if (input.length === 1 || input === '') {
+          alert('Please enter a word with more than one letter.');
+          return; // Stop further execution of translation
+        }
+      
         // Perform the Pig Latin translation
         let vowels = "aeiou".split("");
       
@@ -26,21 +32,19 @@
       function handleTranslate() {
         // Call the translation function and display the result
         const result = translatePigLatin();
-        document.getElementById("resultBox").textContent = result;
+        if (result) {
+          document.getElementById("resultBox").textContent = result;
+        }
       }
     </script>
   </head>
   <body>
     <h1>Pig Latin Translator</h1>
-    <!--Creating input and text box--> 
     <label for="inputBox">Enter a word:</label>
-    <input type="text" id="inputBox" placeholder="Enter a word">
-    <!--onclick event that makes the translation-->
+    <input type="text" id="inputBox" placeholder="Enter a word" required>
     <button onclick="handleTranslate()">Translate</button>
-    <!--Where the output goes-->
     <h2>Translation:</h2>
     <div id="resultBox"></div>
+    <h3>Description: This website takes english words and translates it to Pig Latin!</h3>
   </body>
-
-
 </html>
