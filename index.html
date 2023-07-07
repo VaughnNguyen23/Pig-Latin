@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <title>Pig Latin Translator</title>
+    <script>
+      function translatePigLatin() {
+        // Get the input value from the text box
+        const input = document.getElementById("inputBox").value;
+        
+        // Perform the Pig Latin translation
+        let vowels = "aeiou".split("");
+      
+        for (let i = 0; i < input.length; i += 1) {
+          let individualLetter = input[i];
+          if (vowels.indexOf(individualLetter) != -1 && i === 0) {
+            return input + "way";
+          }
+          if (vowels.indexOf(individualLetter) != -1) {
+            return input.slice(i) + input.slice(0, i) + "ay";
+          }
+        }
+        return input + "ay";
+      }
+      
+      function handleTranslate() {
+        // Call the translation function and display the result
+        const result = translatePigLatin();
+        document.getElementById("resultBox").textContent = result;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Pig Latin Translator</h1>
+    
+    <label for="inputBox">Enter a word:</label>
+    <input type="text" id="inputBox" placeholder="Enter a word">
+    
+    <button onclick="handleTranslate()">Translate</button>
+    
+    <h2>Translation:</h2>
+    <div id="resultBox"></div>
+  </body>
 
 
 </html>
